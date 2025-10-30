@@ -1,0 +1,108 @@
+.customer-list {
+  padding: 20px;
+}
+
+.customer-list h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.customer-list.loading,
+.customer-list.error {
+  text-align: center;
+  padding: 40px;
+}
+
+.customer-list.error button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.customer-list.error button:hover {
+  background-color: #0056b3;
+}
+
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.customer-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.customer-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.customer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.customer-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.trialing {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status.past_due {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.canceled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.customer-details p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.customer-details .phone {
+  font-weight: 600;
+  color: #333;
+}
+
+.no-customers {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
