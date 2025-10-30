@@ -21,10 +21,18 @@ Backend API service for the Words in Season admin interface.
 Create a `.env` file or set these environment variables:
 
 ```bash
+# Azure Cosmos DB
 AZURE_COSMOS_ENDPOINT=https://your-cosmos-account.documents.azure.com:443/
 AZURE_COSMOS_KEY=your-cosmos-key
 AZURE_COSMOS_DATABASE=WIS-Platform
+
+# Azure AD Authentication
+AZURE_AD_TENANT_ID=your-tenant-id
+AZURE_AD_CLIENT_ID=your-backend-client-id
+AZURE_AD_APP_ID_URI=api://your-backend-client-id
 ```
+
+See [AZURE_AD_SETUP.md](../AZURE_AD_SETUP.md) for detailed Azure AD configuration instructions.
 
 ### Running Locally
 
@@ -57,6 +65,8 @@ docker run -p 8080:8080 \
 ```
 
 ## API Endpoints
+
+**All endpoints require Azure AD authentication** via Bearer token in the Authorization header.
 
 ### Customers
 

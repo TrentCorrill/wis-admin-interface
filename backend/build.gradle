@@ -36,8 +36,14 @@ dependencies {
     // Spring Boot Actuator (health checks)
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+    // Spring Security with Azure AD
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'com.azure.spring:spring-cloud-azure-starter-active-directory:5.8.0'
+
     // Test dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

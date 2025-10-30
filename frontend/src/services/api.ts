@@ -1,4 +1,6 @@
-import axios from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
+import { PublicClientApplication } from '@azure/msal-browser';
+import { loginRequest } from '../authConfig';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
@@ -8,6 +10,39 @@ const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Function to configure the API client with MSAL authentication
+export const configureApiClient = (msalInstance: PublicClientApplication) => {
+  // Add request interceptor to attach bearer token
+  apiClient.interceptors.request.use(
+    async (config: InternalAxiosRequestConfig) => {
+      const accounts = msalInstance.getAllAccounts();
+
+      if (accounts.length > 0) {
+        try {
+          // Silently acquire token
+          const response = await msalInstance.acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+          });
+
+          // Add token to request headers
+          if (config.headers) {
+            config.headers.Authorization = `Bearer ${response.accessToken}`;
+          }
+        } catch (error) {
+          console.error('Failed to acquire token silently:', error);
+          // Could trigger interactive login here if needed
+        }
+      }
+
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+};
 
 export interface Customer {
   id: string;
